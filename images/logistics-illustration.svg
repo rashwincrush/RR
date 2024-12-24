@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="600px" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Background -->
+        <rect fill="#F8F9FA" x="0" y="0" width="800" height="600"/>
+        
+        <!-- Delivery Truck -->
+        <g transform="translate(100, 200)">
+            <!-- Truck Body -->
+            <rect fill="#FF4757" x="150" y="100" width="400" height="200" rx="20"/>
+            <rect fill="#2F3542" x="550" y="200" width="100" height="100"/>
+            <!-- Wheels -->
+            <circle fill="#2F3542" cx="200" cy="320" r="40"/>
+            <circle fill="#2F3542" cx="500" cy="320" r="40"/>
+            <!-- Window -->
+            <rect fill="#FFFFFF" x="500" y="150" width="80" height="60" rx="10"/>
+        </g>
+        
+        <!-- Package Icons -->
+        <g transform="translate(200, 150)">
+            <rect fill="#2ED573" x="0" y="0" width="60" height="60" rx="10"/>
+            <rect fill="#2ED573" x="100" y="30" width="40" height="40" rx="8"/>
+            <rect fill="#2ED573" x="180" y="10" width="50" height="50" rx="9"/>
+        </g>
+        
+        <!-- Route Lines -->
+        <path d="M100,400 C200,350 400,450 700,400" stroke="#FF4757" stroke-width="4" stroke-dasharray="10,10"/>
+        
+        <!-- Location Markers -->
+        <circle fill="#FF4757" cx="100" cy="400" r="10"/>
+        <circle fill="#FF4757" cx="700" cy="400" r="10"/>
+    </g>
+</svg>
