@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Revolution - Modern Theme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --accent: #2ed573;
+            --text: #2f3542;
+            --light: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background: #f1f2f6;
+        }
+
+        header {
+            background: var(--light);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 100%);
+            opacity: 0.1;
+            animation: rotate 50s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 213, 115, 0.4);
+        }
+
+        .services {
+            padding: 5rem 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+
+        .service-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .service-card p {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .service-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .service-button:hover {
+            background: #28c363;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tracking-section {
+            background: var(--secondary);
+            color: var(--light);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .tracking-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tracking-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .tracking-form button {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tracking-form button:hover {
+            background: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer {
+            background: var(--gradient);
+            color: var(--light);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            padding: 3rem 1.5rem;
+            position: relative;
+            background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.05) 100%);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .footer-section::after {
+            content: '';
+            position: absolute;
+            right: -1.5rem;
+            top: 10%;
+            height: 80%;
+            width: 1px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        }
+
+        .footer-section:last-child::after {
+            display: none;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .footer-section p {
+            color: var(--light);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-info p {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        .whatsapp-link {
+            color: #25D366;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .whatsapp-link:hover {
+            background: rgba(37, 211, 102, 0.1);
+        }
+
+        .email-link, .location-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .email-link:hover, .location-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+
+        .quick-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            padding: 0.25rem 0;
+            position: relative;
+            width: fit-content;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent);
+            transform: translateX(2px);
+        }
+
+        .map-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: inherit;
+            transition: all 0.3s ease;
+            margin-top: 0.75rem;
+            width: fit-content;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .map-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .social-link img {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+        .social-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-link:hover {
+            color: #25D366; /* Change to desired hover color */
+        }
+
+        .about-section {
+            padding: 6rem 5% 4rem;
+            background: var(--light);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding: 2rem;
+            background: var(--gradient);
+            color: var(--light);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: var(--light);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        }
+
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .msp-section {
+            padding: 6rem 5%;
+            background: var(--gradient);
+            color: var(--light);
+        }
+
+        .msp-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .msp-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .msp-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .msp-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+
+        .msp-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .msp-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .msp-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .msp-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        @media screen and (max-width: 1200px) {
+            .msp-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .msp-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .msp-card {
+                padding: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .msp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--light);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tracking-form {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .about-image {
+                min-height: 300px;
+                padding: 1rem;
+            }
+
+            .msp-header h2 {
+                font-size: 2rem;
+            }
+
+            .msp-card {
+                padding: 1.5rem;
+            }
+
+            .logo img {
+                height: 32px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-item {
+                padding: 0.75rem 0;
+                margin-bottom: 1rem;
+            }
+
+            .contact-text h3 {
+                font-size: 1rem;
+            }
+
+            .contact-text p, .phone-item a {
+                font-size: 0.9rem;
+            }
+        }
+
+        .map-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .map-modal.active {
+            display: flex;
+        }
+
+        .map-modal-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-modal iframe {
+            width: 100%;
+            height: 70vh;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            z-index: 1001;
+        }
+
+        .map-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .map-btn {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .map-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .map-btn.secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .map-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .map-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin-top: 0.75rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: inherit;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .map-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--light);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 100%);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .copyright p {
+            margin: 0.5rem 0;
+        }
+
+        .copyright a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .copyright a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            background: #f1f2f6;
+            transform: rotate(90deg);
+        }
+
+        /* Enhanced Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            margin: auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .form-section h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .required::after {
+            content: "*";
+            color: var(--primary);
+            margin-left: 4px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e4e8;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(46, 213, 115, 0.1);
+        }
+
+        .dimensions-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: #28c363;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 213, 115, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            background: #f1f2f6;
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,1);
+            transform: rotate(90deg);
+        }
+
+        .modal-content {
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding-top: 60px; /* Ensure content doesn't go behind close button */
+        }
+
+        .payment-section {
+            text-align: center;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+        }
+
+        .qr-container {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .payment-qr {
+            max-width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .payment-qr:hover {
+            transform: scale(1.05);
+        }
+
+        .payment-details {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .payment-details ol {
+            padding-left: 1.5rem;
+        }
+
+        .payment-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-button, .whatsapp-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+        }
+
+        .floating-sidebar {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .floating-sidebar .small-button {
+            padding: 5px 10px; /* Adjust padding for a smaller button */
+            font-size: 0.8rem; /* Smaller font size */
+            border-radius: 5px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .floating-sidebar .small-button:hover {
+            background-color: var(--secondary); /* Change to your secondary color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="Route Revolution Logo">
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#services">Services</a>
+                <a href="#tracking">Tracking</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Route Revolution</h1>
+            <p>Your Trusted Route To Success</p>
+            <a href="#services" class="map-button">Book Our Services</a>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>Route Revolution Couriers is a dynamic, tech-driven logistics company specializing in efficient and reliable delivery services. We are dedicated to transforming the courier experience by utilizing cutting-edge technology, optimized routing systems, and a customer-first approach. Our mission is to provide businesses and individuals with fast, cost-effective, and transparent delivery solutions tailored to their specific needs.</p>
+                    <p>Whether you're sending packages locally or across regions, Route Revolution Couriers ensures timely deliveries with real-time tracking, secure handling, and eco-friendly practices. With a focus on improving delivery speed and reducing operational costs, we aim to revolutionize the logistics industry while maintaining high standards of service and reliability.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/modern-logistics.svg" alt="Route Revolution Modern Logistics Network">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="msp-section" id="features">
+        <div class="msp-container">
+            <div class="msp-header">
+                <h2>Our Key Advantages</h2>
+                <p>Delivering Excellence Through Innovation</p>
+            </div>
+            <div class="msp-grid">
+                <div class="msp-card">
+                    <div class="msp-icon">🛣️</div>
+                    <h3>Optimized Routing</h3>
+                    <p>Advanced algorithms to find the quickest and most fuel-efficient routes.</p>
+                </div>
+                <div class="msp-card">
+                    <div class="msp-icon">⚡</div>
+                    <h3>On-Demand Services</h3>
+                    <p>Flexible scheduling for immediate or future deliveries.</p>
+                </div>
+                <div class="msp-card">
+                    <div class="msp-icon">📍</div>
+                    <h3>Real-Time Tracking</h3>
+                    <p>Stay updated with accurate delivery statuses through our user-friendly platform.</p>
+                </div>
+                <div class="msp-card">
+                    <div class="msp-icon">🌱</div>
+                    <h3>Sustainable Practices</h3>
+                    <p>Committed to reducing carbon footprints with green delivery options.</p>
+                </div>
+                <div class="msp-card">
+                    <div class="msp-icon">👥</div>
+                    <h3>Customer-Centric</h3>
+                    <p>Tailored solutions to meet the unique needs of every client.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 id="services">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Business Client Registration (B2B)</h3>
+                <p>Perfect for businesses seeking reliable logistics solutions with volume discounts. Get customized rates, priority support, and streamlined shipping management for your company's regular delivery needs.</p>
+                <button onclick="openModal('b2bModal')" class="service-button">Register as B2B Client</button>
+            </div>
+            <div class="service-card">
+                <h3>Collection Center Registration</h3>
+                <p>Join our network as an authorized collection center and expand your business. Earn additional revenue by handling package collections and deliveries, with full system support and real-time tracking capabilities.</p>
+                <button onclick="openModal('collectionModal')" class="service-button">Register as Collection Center</button>
+            </div>
+            <div class="service-card">
+                <h3>Individual Shipment Booking</h3>
+                <p>Quick and hassle-free shipping for individual customers. Whether it's a one-time delivery or occasional shipping needs, get competitive rates with end-to-end tracking and doorstep pickup services.</p>
+                <button onclick="openModal('bookingModal')" class="service-button">Book Shipping</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="tracking-section" id="tracking">
+        <h2>Track Your Shipment</h2>
+        <form class="tracking-form">
+            <input type="text" placeholder="Enter tracking number">
+            <button type="submit">Track Now</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="quick-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#tracking">Track Shipment</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p>📞 +91 9994344150   \ <a href="https://wa.me/919994344150" class="whatsapp-link">WhatsApp</a></p>
+                </div>
+                <div class="contact-info">
+                    <p>📞 +91 8300898507   \ <a href="https://wa.me/918300898507" class="whatsapp-link">WhatsApp</a></p>
+                </div>
+                <div class="contact-info">
+                    <p>
+                        <i class="fas fa-envelope" style="color: #EA4335; font-size: 1.2rem;"></i>
+                        <a href="mailto:routerevolution24@gmail.com" class="email-link">routerevolution24@gmail.com</a>
+                    </p>
+                </div>
+                <div class="social-links" style="margin-top: 1rem; display: flex; gap: 2rem;">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f" style="color: #1877F2; font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram" style="color: #E4405F; font-size: 1.5rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Office Hours</h3>
+                <p style="margin-bottom: 0.5rem;">Monday To Saturday: 10AM to 6PM</p>
+                <p style="margin-bottom: 0.5rem;">Sunday: Holiday</p>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Contact us for Gov holidays</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Location</h3>
+                <a href="https://maps.app.goo.gl/vAe9EcqVT45JUobt9" target="_blank" rel="noopener noreferrer" class="location-link">
+                    <p>378/1-3, Block No 1,</p>
+                    <p>Near Kovai Hyundai,</p>
+                    <p>Kandampatty Bypass,</p>
+                    <p>Salem-636005</p>
+                </a>
+                <button class="map-button" onclick="window.open('https://maps.app.goo.gl/vAe9EcqVT45JUobt9', '_blank')">
+                    View Map
+                </button>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2024 Route Revolution Couriers. All rights reserved.</p>
+            <p>Developed by <a href="https://ashwinai.in/" target="_blank" rel="noopener noreferrer">Ashwin AI</a></p>
+        </div>
+    </footer>
+
+    <!-- Map Modal -->
+    <div class="map-modal" id="mapModal">
+        <div class="map-modal-content">
+            <button class="close-modal" onclick="closeMap()">&times;</button>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.6373155596016!2d78.11793217505483!3d11.649172588557693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1841e9d3d0d%3A0x2f3544cb46f5f9a4!2sELBEX%20Courier%20Service%20-%20Salem%20HUB!5e0!3m2!1sen!2sin!4v1735036995271!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-actions">
+                <button class="map-btn primary" onclick="openInNewTab()">Open in Google Maps</button>
+                <button class="map-btn secondary" onclick="closeMap()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- B2B Modal -->
+    <div id="b2bModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('b2bModal')">&times;</span>
+            <h2>B2B Client Registration</h2>
+            <form id="b2bForm" onsubmit="handleB2BSubmit(event)">
+                <div class="form-section">
+                    <h3>Company Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required">Client Name</label>
+                            <input type="text" name="clientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Company Name</label>
+                            <input type="text" name="companyName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Contact Person Name</label>
+                            <input type="text" name="contactPerson" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Email Address</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Phone Number</label>
+                            <input type="tel" name="phone" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Billing Address</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="required">Street Address</label>
+                            <textarea name="street" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">City</label>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">State</label>
+                            <input type="text" name="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Pincode</label>
+                            <input type="text" name="pincode" pattern="[0-9]{6}" title="Please enter a valid 6-digit pincode" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Country</label>
+                            <input type="text" name="country" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Shipment Details</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required">Actual Weight (kg)</label>
+                            <input type="number" name="actualWeight" step="0.01" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">Dimensions (L x B x H in cms)</label>
+                            <div class="dimensions-group">
+                                <input type="number" name="length" placeholder="Length" required>
+                                <input type="number" name="breadth" placeholder="Breadth" required>
+                                <input type="number" name="height" placeholder="Height" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Quantity</label>
+                            <input type="number" name="quantity" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Commodity Value</label>
+                            <input type="number" name="commodityValue" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Category of Goods</label>
+                            <input type="text" name="category" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Tax Value</label>
+                            <input type="number" name="taxValue" step="0.01" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Special Instructions</label>
+                            <textarea name="specialInstructions" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Collection Center Modal -->
+    <div id="collectionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('collectionModal')">&times;</span>
+            <h2>Collection Center Registration</h2>
+            <form id="collectionForm" onsubmit="handleCollectionSubmit(event)">
+                <div class="form-section">
+                    <h3>Center Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required">Center Name</label>
+                            <input type="text" name="centerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Contact Person Name</label>
+                            <input type="text" name="contactPerson" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Email Address</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Phone Number</label>
+                            <input type="tel" name="phone" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Center Address</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="required">Street Address</label>
+                            <textarea name="street" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">City</label>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">State</label>
+                            <input type="text" name="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Pincode</label>
+                            <input type="text" name="pincode" pattern="[0-9]{6}" title="Please enter a valid 6-digit pincode" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Country</label>
+                            <input type="text" name="country" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Excel Sheets</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="required">Access the Main Hub Sheet</label>
+                            <div style="margin-top: 1rem;">
+                                <a href="https://docs.google.com/spreadsheets/d/1zrRVDBqOdWzt9XCkBwuHAMHk2U28wPP_0ThfVi4_Lig/edit?usp=sharing" target="_blank" class="service-button" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-table"></i>
+                                    Open Collection Center Sheet
+                                </a>
+                            </div>
+                            <p style="margin-top: 1rem; font-size: 0.95rem; color: #666; line-height: 1.5;">
+                                1. Click the button above to access the main hub sheet<br>
+                                2. Add your collection center's data in the sheet<br>
+                                3. Save your changes in the sheet<br>
+                                4. Click 'Submit Registration' below to notify us
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('bookingModal')">&times;</span>
+            <h2>Book Your Shipment</h2>
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required">Full Name</label>
+                            <input type="text" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Email Address</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Phone Number</label>
+                            <input type="tel" name="phone" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Pickup Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="required">Pickup Address</label>
+                            <textarea name="pickupAddress" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">City</label>
+                            <input type="text" name="pickupCity" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">State</label>
+                            <input type="text" name="pickupState" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Pincode</label>
+                            <input type="text" name="pickupPincode" pattern="[0-9]{6}" title="Please enter a valid 6-digit pincode" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Country</label>
+                            <input type="text" name="pickupCountry" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Delivery Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="required">Delivery Address</label>
+                            <textarea name="deliveryAddress" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">City</label>
+                            <input type="text" name="deliveryCity" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">State</label>
+                            <input type="text" name="deliveryState" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Pincode</label>
+                            <input type="text" name="deliveryPincode" pattern="[0-9]{6}" title="Please enter a valid 6-digit pincode" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Country</label>
+                            <input type="text" name="deliveryCountry" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Package Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required">Actual Weight (kg)</label>
+                            <input type="number" name="actualWeight" step="0.01" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="required">Dimensions (L x B x H in cms)</label>
+                            <div class="dimensions-group">
+                                <input type="number" name="length" placeholder="Length" required>
+                                <input type="number" name="breadth" placeholder="Breadth" required>
+                                <input type="number" name="height" placeholder="Height" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Book Shipment</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="floating-sidebar">
+        <button onclick="openPaymentQRModal()" class="service-button small-button">Payment QR code</button>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+        });
+
+        // Map Modal Functions
+        function showMap(event) {
+            event.preventDefault();
+            document.getElementById('mapModal').classList.add('active');
+        }
+
+        function closeMap() {
+            document.getElementById('mapModal').classList.remove('active');
+        }
+
+        function openInNewTab() {
+            window.open('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.6373155596016!2d78.11793217505483!3d11.649172588557693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf1841e9d3d0d%3A0x2f3544cb46f5f9a4!2sELBEX%20Courier%20Service%20-%20Salem%20HUB!5e0!3m2!1sen!2sin!4v1735036995271!5m2!1sen!2sin', '_blank');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('mapModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeMap();
+            }
+        });
+
+        function openModal(modalId) {
+            console.log("openModal function called");
+
+            // Comprehensive logging and error tracking
+            try {
+                // Check if modal already exists
+                let existingModal = document.getElementById(modalId);
+                console.log("Existing modal check:", existingModal);
+
+                // If modal doesn't exist, create it dynamically
+                if (!existingModal) {
+                    console.log("Creating new modal dynamically");
+
+                    // Create modal container
+                    const paymentModal = document.createElement('div');
+                    paymentModal.id = modalId;
+                    paymentModal.className = 'modal';
+
+                    // Detailed modal content
+                    paymentModal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-modal" onclick="closeModal('${modalId}')">&times;</span>
+                            <h2>${modalId.charAt(0).toUpperCase() + modalId.slice(1)}</h2>
+                            <div class="payment-section">
+                                <p>Our hub team will contact you shortly to confirm the exact shipping charges.</p>
+                                <div class="qr-container">
+                                    <img 
+                                        src="images/route-revolution-payment-qr.png" 
+                                        alt="Route Revolution Payment QR" 
+                                        class="payment-qr"
+                                        onerror="console.error('QR Code image failed to load')"
+                                    >
+                                </div>
+                                <div class="payment-details">
+                                    <h3>Payment Instructions</h3>
+                                    <ol>
+                                        <li>Wait for our hub team to call and confirm the exact charges</li>
+                                        <li>Use the QR code below to make the payment</li>
+                                        <li>Scan with your preferred UPI app</li>
+                                        <li>Keep the payment receipt for reference</li>
+                                    </ol>
+                                </div>
+                                <div class="payment-contact">
+                                    <p>Need help? Contact us:</p>
+                                    <a href="tel:9994344150" class="contact-button">Call Support</a>
+                                    <a href="https://wa.me/919994344150" class="whatsapp-button">WhatsApp Support</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Append to body with error logging
+                    try {
+                        document.body.appendChild(paymentModal);
+                        console.log("Modal successfully appended to body");
+                    } catch (appendError) {
+                        console.error("Error appending modal to body:", appendError);
+                        alert("Could not create payment modal. Please refresh the page.");
+                        return;
+                    }
+                }
+
+                // Ensure modal exists before trying to open
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    console.log("Modal found, attempting to open");
+                    modal.style.display = 'flex';
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    console.log("Modal opened successfully");
+                } else {
+                    console.error("Modal not found after creation attempt");
+                    alert("Could not create payment modal. Please refresh the page.");
+                }
+
+            } catch (generalError) {
+                console.error("Unexpected error in openModal:", generalError);
+                alert("An unexpected error occurred. Please try again.");
+            }
+        }
+
+        // Enhanced modal closing function
+        function closeModal(modalId) {
+            console.log(`Attempting to close modal: ${modalId}`);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                try {
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 300);
+                    console.log(`Modal ${modalId} closed successfully`);
+                } catch (closeError) {
+                    console.error(`Error closing modal ${modalId}:`, closeError);
+                }
+            } else {
+                console.error(`Modal ${modalId} not found`);
+            }
+        }
+
+        // Add event listener to close modal when clicking outside
+        document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('click', (event) => {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (event.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+        });
+
+        function openPaymentQRModal() {
+            console.log("openPaymentQRModal function called");
+
+            // Comprehensive logging and error tracking
+            try {
+                // Check if modal already exists
+                let existingModal = document.getElementById('paymentQRModal');
+                console.log("Existing modal check:", existingModal);
+
+                // If modal doesn't exist, create it dynamically
+                if (!existingModal) {
+                    console.log("Creating new modal dynamically");
+
+                    // Create modal container
+                    const paymentModal = document.createElement('div');
+                    paymentModal.id = 'paymentQRModal';
+                    paymentModal.className = 'modal';
+
+                    // Detailed modal content
+                    paymentModal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-modal" onclick="closeModal('paymentQRModal')">&times;</span>
+                            <h2>Payment Instructions</h2>
+                            <div class="payment-section">
+                                <p>Our hub team will contact you shortly to confirm the exact shipping charges.</p>
+                                <div class="qr-container">
+                                    <img 
+                                        src="images/route-revolution-payment-qr.png" 
+                                        alt="Route Revolution Payment QR" 
+                                        class="payment-qr"
+                                        onerror="console.error('QR Code image failed to load')"
+                                    >
+                                </div>
+                                <div class="payment-details">
+                                    <h3>Payment Instructions</h3>
+                                    <ol>
+                                        <li>Wait for our hub team to call and confirm the exact charges</li>
+                                        <li>Use the QR code below to make the payment</li>
+                                        <li>Scan with your preferred UPI app</li>
+                                        <li>Keep the payment receipt for reference</li>
+                                    </ol>
+                                </div>
+                                <div class="payment-contact">
+                                    <p>Need help? Contact us:</p>
+                                    <a href="tel:9994344150" class="contact-button">Call Support</a>
+                                    <a href="https://wa.me/919994344150" class="whatsapp-button">WhatsApp Support</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Append to body with error logging
+                    try {
+                        document.body.appendChild(paymentModal);
+                        console.log("Modal successfully appended to body");
+                    } catch (appendError) {
+                        console.error("Error appending modal to body:", appendError);
+                        alert("Could not create payment modal. Please refresh the page.");
+                        return;
+                    }
+                }
+
+                // Ensure modal exists before trying to open
+                const modal = document.getElementById('paymentQRModal');
+                if (modal) {
+                    console.log("Modal found, attempting to open");
+                    modal.style.display = 'flex';
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    console.log("Modal opened successfully");
+                } else {
+                    console.error("Modal not found after creation attempt");
+                    alert("Could not create payment modal. Please refresh the page.");
+                }
+
+            } catch (generalError) {
+                console.error("Unexpected error in openPaymentQRModal:", generalError);
+                alert("An unexpected error occurred. Please try again.");
+            }
+        }
+
+        function handleB2BSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            let message = "New B2B Registration:\n\n";
+            formData.forEach((value, key) => {
+                message += `${key}: ${value}\n`;
+            });
+            sendToWhatsApp(message);
+            closeModal('b2bModal');
+            event.target.reset();
+        }
+
+        function handleCollectionSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            let message = "🔔 Collection Center Data Update Notification\n\n";
+            message += "A collection center has added information to the Excel sheet.\n\n";
+            message += "Center Details:\n";
+            message += `Center Name: ${formData.get('centerName')}\n`;
+            message += `Contact Person: ${formData.get('contactPerson')}\n`;
+            message += `Email: ${formData.get('email')}\n`;
+            message += `Phone: ${formData.get('phone')}\n\n`;
+            message += "Address:\n";
+            message += `${formData.get('street')}\n`;
+            message += `${formData.get('city')}, ${formData.get('state')}\n`;
+            message += `${formData.get('pincode')}, ${formData.get('country')}\n\n`;
+            message += "Please check the Excel sheet for the updated information.";
+            
+            sendToWhatsApp(message);
+            closeModal('collectionModal');
+            event.target.reset();
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            let message = "New Shipping Booking:\n\n";
+            formData.forEach((value, key) => {
+                message += `${key}: ${value}\n`;
+            });
+            sendToWhatsApp(message);
+            closeModal('bookingModal');
+            openPaymentQRModal();
+            event.target.reset();
+        }
+
+        function sendToWhatsApp(message) {
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/919994344150?text=${encodedMessage}`, '_blank');
+        }
+
+        function downloadTemplate() {
+            // Create template data
+            const template = `Reference No,Consignee Name,Consignee Address,City,State,Pincode,Country,Actual Weight (kg),Volumetric Weight (kg),Quantity,Commodity Value,Category of Goods,Tax Value,Invoice No,Invoice Date,Special Instructions
+1,John Doe,123 Main St,Mumbai,Maharashtra,400001,India,5.5,6.2,2,1000,Electronics,180,INV001,2024-01-01,`;
+
+            // Create blob and download
+            const blob = new Blob([template], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'collection-center-template.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
