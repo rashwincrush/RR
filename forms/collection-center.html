@@ -101,29 +101,6 @@
             margin-left: 4px;
         }
 
-        .bulk-upload {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-
-        .bulk-upload h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .download-template {
-            display: inline-block;
-            color: var(--primary);
-            text-decoration: none;
-            margin-bottom: 1rem;
-        }
-
-        .download-template:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -186,19 +163,8 @@
             </div>
 
             <button type="submit" class="submit-btn">Submit Registration</button>
+            <button type="button" onclick="window.parent.accessSpreadsheet()" class="service-button" style="display: block; margin: 0 auto;">Access Spreadsheet here</button>
         </form>
-
-        <!-- Bulk Upload Section -->
-        <div class="bulk-upload">
-            <h3>Bulk Upload</h3>
-            <p>For multiple entries, you can use our bulk upload feature:</p>
-            <a href="templates/collection-center-template.xlsx" class="download-template" download>Download Template Spreadsheet</a>
-            <div class="form-group">
-                <label for="bulkUpload">Upload Spreadsheet</label>
-                <input type="file" id="bulkUpload" name="bulkUpload" accept=".xlsx,.xls,.csv">
-            </div>
-            <button onclick="handleBulkUpload()" class="submit-btn">Process Bulk Upload</button>
-        </div>
     </div>
 
     <script>
@@ -225,21 +191,12 @@
             event.target.reset();
         }
 
-        function handleBulkUpload() {
-            const fileInput = document.getElementById('bulkUpload');
-            const file = fileInput.files[0];
-            
-            if (file) {
-                // Here you would typically process the file
-                // For now, we'll just send a notification via WhatsApp
-                const message = `Bulk upload received:\nFilename: ${file.name}\nSize: ${(file.size/1024).toFixed(2)} KB`;
-                const encodedMessage = encodeURIComponent(message);
-                const whatsappLink = `https://wa.me/919994344150?text=${encodedMessage}`;
-                window.open(whatsappLink, '_blank');
-            } else {
-                alert('Please select a file to upload');
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.getElementById('collectionCenterForm').reset();
+                document.querySelector('.form-container').style.display = 'none';
             }
-        }
+        });
     </script>
 </body>
 </html>
