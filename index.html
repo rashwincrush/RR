@@ -681,29 +681,145 @@
             padding: 2rem;
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-            align-items: center;
+        .about-flex {
+            display: flex;
+            gap: 4rem;
+            align-items: stretch;
+            min-height: 600px;
         }
 
         .about-text {
+            flex: 1;
             padding: 2rem;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--light);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .about-text h2 {
-            margin-bottom: 1.5rem;
             font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
         }
 
         .about-text p {
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            color: var(--light);
+        }
+
+        .feature-cards {
+            flex: 1.5;
+            display: grid;
+            grid-template-areas: 
+                "top-left    top-right"
+                "center      center"
+                "bottom-left bottom-right";
+            grid-template-rows: 30% 40% 30%;
+            gap: 1rem;
+            height: 520px;  /* Match About Us height */
+            padding: 0.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:nth-child(1) { grid-area: top-left; }
+        .feature-card:nth-child(2) { grid-area: top-right; }
+        .feature-card:nth-child(5) { 
+            grid-area: center;
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 3.5rem;  /* Moves Modern Facilities down */
+        }
+        .feature-card:nth-child(3) { 
+            grid-area: bottom-left;
+            margin-top: 3rem;  /* Moves Live Tracking down */
+        }
+        .feature-card:nth-child(4) { 
+            grid-area: bottom-right;
+            margin-top: 3rem;  /* Moves Home Delivery down */
+        }
+
+        .card-icon {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover .card-icon img {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .about-flex {
+                flex-direction: column;
+            }
+
+            .feature-cards {
+                width: 100%;
+                height: auto;
+                grid-template-rows: auto auto auto;
+                padding: 1rem;
+            }
+
+            .feature-card:nth-child(5) {
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .feature-cards {
+                grid-template-areas: 
+                    "top-left"
+                    "top-right"
+                    "center"
+                    "bottom-left"
+                    "bottom-right";
+                height: auto;
+            }
+
+            .feature-card:nth-child(5) {
+                width: 100%;
+            }
         }
 
         .services-grid {
@@ -1631,47 +1747,52 @@
 
     <section class="about-section" id="about">
         <div class="about-container">
-            <div class="about-content" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center;">
+            <div class="about-flex">
                 <div class="about-text">
                     <h2>About Us</h2>
                     <p>Route Revolution Couriers is a dynamic, tech-driven logistics company specializing in efficient and reliable delivery services. We are dedicated to transforming the courier experience by utilizing cutting-edge technology, optimized routing systems, and a customer-first approach. Our mission is to provide businesses and individuals with fast, cost-effective, and transparent delivery solutions tailored to their specific needs.</p>
                     <p>Whether you're sending packages locally or across regions, Route Revolution Couriers ensures timely deliveries with real-time tracking, secure handling, and eco-friendly practices. With a focus on improving delivery speed and reducing operational costs, we aim to revolutionize the logistics industry while maintaining high standards of service and reliability.</p>
                 </div>
-                <div class="services-grid">
-                    <div class="service-preview">
-                        <img src="images/image2.jpg" alt="Express Delivery">
-                        <div class="service-overlay">
-                            <h3>Express Delivery</h3>
-                            <p class="service-description">Lightning-fast local deliveries with guaranteed same-day service for time-sensitive packages.</p>
+                
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="images/image 2.jpg" alt="Express Delivery">
                         </div>
+                        <h3>Express Delivery</h3>
+                        <p>Lightning-fast local deliveries with guaranteed same-day service</p>
                     </div>
-                    <div class="service-preview">
-                        <img src="images/image1.jpg" alt="International Shipping">
-                        <div class="service-overlay">
-                            <h3>International Shipping</h3>
-                            <p class="service-description">Global delivery solutions with extensive network coverage and real-time tracking systems to keep your cargo moving.</p>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="images/image 1.jpg" alt="International Shipping">
                         </div>
+                        <h3>Global Network</h3>
+                        <p>Worldwide shipping with real-time tracking systems</p>
                     </div>
-                    <div class="service-preview featured">
-                        <img src="images/image3.jpg" alt="Real-Time Tracking">
-                        <div class="service-overlay">
-                            <h3>Real-Time Tracking</h3>
-                            <p class="service-description">Stay updated with precise location tracking and estimated delivery times for all your shipments.</p>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="images/image 3.jpg" alt="Real-Time Tracking">
                         </div>
+                        <h3>Live Tracking</h3>
+                        <p>Stay updated with precise location tracking</p>
                     </div>
-                    <div class="service-preview">
-                        <img src="images/image4.jpg" alt="Doorstep Delivery">
-                        <div class="service-overlay">
-                            <h3>Doorstep Delivery</h3>
-                            <p class="service-description">Professional doorstep delivery service ensuring your packages reach safely and on time.</p>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="images/image 4.jpg" alt="Doorstep Delivery">
                         </div>
+                        <h3>Home Delivery</h3>
+                        <p>Professional doorstep delivery service</p>
                     </div>
-                    <div class="service-preview">
-                        <img src="images/image5.jpg" alt="Bulk Cargo & Shipments">
-                        <div class="service-overlay">
-                            <h3>Bulk Cargo & Shipments</h3>
-                            <p class="service-description">State-of-the-art warehousing and bulk shipping solutions for businesses with high-volume requirements.</p>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="images/image 5.jpg" alt="Modern Facilities">
                         </div>
+                        <h3>Modern Facilities</h3>
+                        <p>State-of-the-art warehousing solutions</p>
                     </div>
                 </div>
             </div>
