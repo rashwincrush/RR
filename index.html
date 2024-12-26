@@ -41,7 +41,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -240,73 +240,152 @@
 
         .services {
             padding: 5rem 5%;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: white;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            padding: 2rem 5%;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .service-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            min-height: 450px;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 71, 87, 0.3);
+        }
+
+        .service-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
+            color: #ff4757;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .service-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #ff4757, #ff6b81);
+            border-radius: 2px;
         }
 
         .service-card p {
-            flex-grow: 1;
+            color: rgba(5, 4, 4, 0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .service-card ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
             margin-bottom: 1.5rem;
-            color: var(--secondary);
+        }
+
+        .service-card li {
+            color: rgba(66, 23, 23, 0.8);
+            margin-bottom: 0.5rem;
             font-size: 0.95rem;
             line-height: 1.6;
         }
 
+        .service-card li::marker {
+            color: #ff4757;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .service-actions {
+            padding: 0 2.5rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
         .service-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(to right, #ff4757, #ff6b81); /* Match the color with Track Now button */
+            background: linear-gradient(to right, #ff4757, #ff6b81);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
+            padding: 1rem 2rem;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             text-align: center;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .service-button:hover::before {
+            left: 100%;
+        }
+
+        .service-button.secondary {
+            background: transparent;
+            border: 2px solid #ff4757;
+            color: #ff4757;
         }
 
         .service-button:hover {
-            background: #28c363;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
         }
 
-        .whatsapp-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
+        .service-button.secondary:hover {
+            background: rgba(255, 71, 87, 0.1);
+            border-color: #ff6b81;
+            color: #ff6b81;
         }
 
         @media screen and (max-width: 992px) {
@@ -318,6 +397,10 @@
         @media screen and (max-width: 768px) {
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                min-height: auto;
             }
         }
 
@@ -399,8 +482,47 @@
                 flex-direction: column;
             }
             
-            .tracking-form button {
-                width: 100%;
+            .contact-container {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .about-image {
+                min-height: 300px;
+                padding: 1rem;
+            }
+
+            .logo img {
+                height: 32px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-item {
+                padding: 0.75rem 0;
+                margin-bottom: 1rem;
+            }
+
+            .contact-text h3 {
+                font-size: 1rem;
+            }
+
+            .contact-text p, .phone-item a {
+                font-size: 0.9rem;
             }
         }
 
@@ -526,14 +648,12 @@
             cursor: pointer;
             font-size: inherit;
             transition: all 0.3s ease;
-            margin-top: 0.75rem;
             width: fit-content;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .map-button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .social-link img {
@@ -556,13 +676,14 @@
         }
 
         .about-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 2rem;
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 3rem;
             align-items: center;
         }
@@ -585,33 +706,150 @@
             line-height: 1.8;
         }
 
-        .about-image {
-            position: relative;
-            overflow: hidden;
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--light);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: var(--light);
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
         }
 
-        .about-image img {
-            width: 100%;
-            height: auto;
-            max-width: 600px;
+        .service-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            aspect-ratio: 4/3;
+            height: 150px;
         }
 
-        .about-image:hover img {
-            transform: scale(1.02);
+        .service-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-preview:hover img {
+            transform: scale(1.1);
+        }
+
+        .service-preview:hover .service-overlay {
+            transform: translateY(0);
+        }
+
+        .service-overlay h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .service-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            opacity: 1;
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            margin: auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-text {
+            padding: 2rem;
+        }
+
+        .modal-text h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-text p {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        @media screen and (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .msp-section {
-            padding: 6rem 5%;
+            padding: 4rem 5%;  /* Reduced from 6rem */
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--light);
         }
@@ -623,27 +861,28 @@
 
         .msp-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;  /* Reduced from 4rem */
         }
 
         .msp-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;  /* Reduced from 2.5rem */
+            margin-bottom: 0.5rem;  /* Reduced from 1rem */
         }
 
         .msp-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             margin: 0 auto;
-            max-width: 1400px;
+            max-width: 1200px;
+            padding: 0 1rem;  /* Reduced from 2rem */
         }
 
         .msp-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 20px;
+            padding: 1.25rem;  /* Reduced from 1.5rem */
+            border-radius: 15px;  /* Reduced from 20px */
             transition: transform 0.3s ease;
             height: 100%;
             display: flex;
@@ -652,32 +891,35 @@
             text-align: center;
         }
 
+        .msp-icon {
+            font-size: 3rem;  /* Reduced from 3.5rem */
+            margin-bottom: 1rem;  /* Reduced from 2rem */
+            color: white;
+        }
+
         .msp-card h3 {
-            color: white; /* Change the color to white for 'Optimized Routing' */
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.75rem;  /* Reduced from 1rem */
+            font-size: 1.25rem;  /* Reduced from 1.5rem */
         }
 
         .msp-card p {
-            line-height: 1.6;
+            line-height: 1.5;
             opacity: 0.9;
-        }
-
-        .msp-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
+            font-size: 0.9rem;  /* Added to match Index_1 */
         }
 
         @media screen and (max-width: 1200px) {
             .msp-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
         }
 
         @media screen and (max-width: 768px) {
             .msp-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
             .msp-card {
                 padding: 1rem;
@@ -742,14 +984,6 @@
             .about-image {
                 min-height: 300px;
                 padding: 1rem;
-            }
-
-            .msp-header h2 {
-                font-size: 2rem;
-            }
-
-            .msp-card {
-                padding: 1.5rem;
             }
 
             .logo img {
@@ -823,7 +1057,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: #f8f9fa;
+            background: rgba(255,255,255,0.9);
             z-index: 1001;
         }
 
@@ -881,7 +1115,7 @@
             margin-top: 3rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: var(--light);
+            color: var (--light);
             background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 100%);
             border-radius: 0 0 12px 12px;
         }
@@ -1282,6 +1516,81 @@
                 text-align: center; /* Center text on smaller screens */
             }
         }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .popup h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .popup p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .popup ol {
+            padding-left: 1.5rem;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .package-details {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .package-details h4 {
+            margin: 0 0 1rem 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1322,18 +1631,64 @@
 
     <section class="about-section" id="about">
         <div class="about-container">
-            <div class="about-content">
+            <div class="about-content" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center;">
                 <div class="about-text">
                     <h2>About Us</h2>
                     <p>Route Revolution Couriers is a dynamic, tech-driven logistics company specializing in efficient and reliable delivery services. We are dedicated to transforming the courier experience by utilizing cutting-edge technology, optimized routing systems, and a customer-first approach. Our mission is to provide businesses and individuals with fast, cost-effective, and transparent delivery solutions tailored to their specific needs.</p>
                     <p>Whether you're sending packages locally or across regions, Route Revolution Couriers ensures timely deliveries with real-time tracking, secure handling, and eco-friendly practices. With a focus on improving delivery speed and reducing operational costs, we aim to revolutionize the logistics industry while maintaining high standards of service and reliability.</p>
                 </div>
-                <div class="about-image">
-                    <img src="images/modern-logistics.svg" alt="Route Revolution Modern Logistics Network">
+                <div class="services-grid">
+                    <div class="service-preview">
+                        <img src="images/image 2.jpg" alt="Express Delivery">
+                        <div class="service-overlay">
+                            <h3>Express Delivery</h3>
+                            <p class="service-description">Lightning-fast local deliveries with guaranteed same-day service for time-sensitive packages.</p>
+                        </div>
+                    </div>
+                    <div class="service-preview">
+                        <img src="images/image 1.jpg" alt="International Shipping">
+                        <div class="service-overlay">
+                            <h3>International Shipping</h3>
+                            <p class="service-description">Global delivery solutions with extensive network coverage and real-time tracking systems to keep your cargo moving.</p>
+                        </div>
+                    </div>
+                    <div class="service-preview featured">
+                        <img src="images/image 3.jpg" alt="Real-Time Tracking">
+                        <div class="service-overlay">
+                            <h3>Real-Time Tracking</h3>
+                            <p class="service-description">Stay updated with precise location tracking and estimated delivery times for all your shipments.</p>
+                        </div>
+                    </div>
+                    <div class="service-preview">
+                        <img src="images/image 4.jpg" alt="Doorstep Delivery">
+                        <div class="service-overlay">
+                            <h3>Doorstep Delivery</h3>
+                            <p class="service-description">Professional doorstep delivery service ensuring your packages reach safely and on time.</p>
+                        </div>
+                    </div>
+                    <div class="service-preview">
+                        <img src="images/image 5.jpg" alt="Bulk Cargo & Shipments">
+                        <div class="service-overlay">
+                            <h3>Bulk Cargo & Shipments</h3>
+                            <p class="service-description">State-of-the-art warehousing and bulk shipping solutions for businesses with high-volume requirements.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeServiceModal()">&times;</span>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <div class="modal-text">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+                <button class="service-button" onclick="location.href='#services'">Book Now</button>
+            </div>
+        </div>
+    </div>
 
     <section class="msp-section" id="features">
         <div class="msp-container">
@@ -1344,7 +1699,7 @@
             <div class="msp-grid">
                 <div class="msp-card">
                     <div class="msp-icon">🛣️</div>
-                    <h3 style="color: white;">Optimized Routing</h3>
+                    <h3>Optimized Routing</h3>
                     <p>Advanced algorithms to find the quickest and most fuel-efficient routes.</p>
                 </div>
                 <div class="msp-card">
@@ -1356,11 +1711,6 @@
                     <div class="msp-icon">📍</div>
                     <h3>Real-Time Tracking</h3>
                     <p>Stay updated with accurate delivery statuses through our user-friendly platform.</p>
-                </div>
-                <div class="msp-card">
-                    <div class="msp-icon">🌱</div>
-                    <h3>Sustainable Practices</h3>
-                    <p>Committed to reducing carbon footprints with green delivery options.</p>
                 </div>
                 <div class="msp-card">
                     <div class="msp-icon">👥</div>
@@ -1375,19 +1725,44 @@
         <h2 id="services">Our Services</h2>
         <div class="services-grid">
             <div class="service-card">
-                <h3>Business Client Enquiry</h3>
-                <p>Perfect for businesses seeking reliable logistics solutions with volume discounts. Get customized rates, priority support, and streamlined shipping management for your company's regular delivery needs.</p>
-                <button onclick="openModal('b2bModal')" class="service-button" style="display: block; margin: 0 auto;">Enquire as B2B Client</button>
+                <div class="service-content">
+                    <h3>Business Client Enquiry</h3>
+                    <ul>
+                        <li>Perfect for businesses seeking reliable logistics solutions with volume discounts</li>
+                        <li>Get customized rates, priority support</li>
+                        <li>Streamlined shipping management for your company's regular delivery needs</li>
+                    </ul>
+                </div>
+                <div class="service-actions">
+                    <button onclick="openModal('b2bModal')" class="service-button">Register as B2B Client</button>
+                </div>
             </div>
             <div class="service-card">
-                <h3>Collection Center Registration</h3>
-                <p>Join our network as an authorized collection center and expand your business. Earn additional revenue by handling package collections and deliveries, with full system support and real-time tracking capabilities.</p>
-                <button onclick="openModal('collectionModal')" class="service-button" style="display: block; margin: 0 auto;">Register as Collection Center</button>
+                <div class="service-content">
+                    <h3>Collection Center Registration</h3>
+                    <ul>
+                        <li>Join our network as an authorized collection center and expand your business</li>
+                        <li>Earn additional revenue by handling package collections and deliveries</li>
+                        <li>Full system support and real-time tracking capabilities</li>
+                    </ul>
+                </div>
+                <div class="service-actions">
+                    <button onclick="openModal('collectionModal')" class="service-button">Register as Collection Center</button>
+                    <button type="button" onclick="accessSpreadsheet()" class="service-button secondary">Access Spreadsheet here</button>
+                </div>
             </div>
             <div class="service-card">
-                <h3>Individual Shipment Booking</h3>
-                <p>Quick and hassle-free shipping for individual customers. Whether it's a one-time delivery or occasional shipping needs, get competitive rates with end-to-end tracking and doorstep pickup services.</p>
-                <button onclick="openModal('bookingModal')" class="service-button" style="display: block; margin: 0 auto;">Book Shipping</button>
+                <div class="service-content">
+                    <h3>Individual Shipment Booking</h3>
+                    <ul>
+                        <li>Quick and hassle-free shipping for individual customers</li>
+                        <li>Whether it's a one-time delivery or occasional shipping needs</li>
+                        <li>Get competitive rates with end-to-end tracking and doorstep pickup services</li>
+                    </ul>
+                </div>
+                <div class="service-actions">
+                    <button onclick="openModal('bookingModal')" class="service-button">Book Shipping</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1434,6 +1809,7 @@
                 <div class="quick-links">
                     <a href="#home">Home</a>
                     <a href="#about">About Us</a>
+                    <a href="#features">Features</a>
                     <a href="#services">Services</a>
                     <a href="#tracking">Track Shipment</a>
                     <a href="#contact">Contact</a>
@@ -1474,7 +1850,7 @@
             <div class="footer-section">
                 <h3>Location</h3>
                 <a href="https://maps.app.goo.gl/vAe9EcqVT45JUobt9" target="_blank" rel="noopener noreferrer" class="location-link">
-                    <p>378/1-3, Block No 1,</p>
+                    378/1-3, Block No 1,
                     <p>Near Kovai Hyundai,</p>
                     <p>Kandampatty Bypass,</p>
                     <p>Salem-636005</p>
@@ -1561,44 +1937,6 @@
                     </div>
                 </div>
 
-                <div class="form-section">
-                    <h3>Shipment Details</h3>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="required">Actual Weight (kg)</label>
-                            <input type="number" name="actualWeight" step="0.01" required>
-                        </div>
-                        <div class="form-group full-width">
-                            <label class="required">Dimensions (L x B x H in cms)</label>
-                            <div class="dimensions-group">
-                                <input type="number" name="length" placeholder="Length" required>
-                                <input type="number" name="breadth" placeholder="Breadth" required>
-                                <input type="number" name="height" placeholder="Height" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="required">Quantity</label>
-                            <input type="number" name="quantity" min="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="required">Commodity Value</label>
-                            <input type="number" name="commodityValue" step="0.01" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="required">Category of Goods</label>
-                            <input type="text" name="category" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="required">Tax Value</label>
-                            <input type="number" name="taxValue" step="0.01" required>
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Special Instructions</label>
-                            <textarea name="specialInstructions" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-
                 <button type="submit" class="submit-btn">Submit Enquiry</button>
             </form>
         </div>
@@ -1657,28 +1995,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-section">
-                    <h3>Excel Sheets</h3>
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label class="required">Access the Main Hub Sheet</label>
-                            <div style="margin-top: 1rem;">
-                                <a href="https://docs.google.com/spreadsheets/d/1zrRVDBqOdWzt9XCkBwuHAMHk2U28wPP_0ThfVi4_Lig/edit?usp=sharing" target="_blank" class="service-button" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                                    <i class="fas fa-table"></i>
-                                    Open Collection Center Sheet
-                                </a>
-                            </div>
-                            <p style="margin-top: 1rem; font-size: 0.95rem; color: #666; line-height: 1.5;">
-                                1. Click the button above to access the main hub sheet<br>
-                                2. Add your collection center's data in the sheet<br>
-                                3. Save your changes in the sheet<br>
-                                4. Click 'Submit Registration' below to notify us
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
                 <button type="submit" class="submit-btn">Submit Registration</button>
             </form>
         </div>
@@ -1762,24 +2078,11 @@
 
                 <div class="form-section">
                     <h3>Package Information</h3>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="required">Number of Packages</label>
-                            <input type="number" name="numberOfPackages" min="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="required">Actual Weight (kg)</label>
-                            <input type="number" name="actualWeight" step="0.01" required>
-                        </div>
-                        <div class="form-group full-width">
-                            <label class="required">Dimensions (L x B x H in cms)</label>
-                            <div class="dimensions-group">
-                                <input type="number" name="length" placeholder="Length" required>
-                                <input type="number" name="breadth" placeholder="Breadth" required>
-                                <input type="number" name="height" placeholder="Height" required>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label class="required">Number of Packages</label>
+                        <input type="number" min="1" max="10" required name="numPackages" id="numPackages" onchange="generatePackageFields(this.value)">
                     </div>
+                    <div id="packageFields"></div>
                 </div>
 
                 <button type="submit" class="submit-btn">Book Shipment</button>
@@ -1789,6 +2092,21 @@
 
     <div class="floating-sidebar">
         <button onclick="openPaymentQRModal()" class="service-button small-button">Payment QR code</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="spreadsheetPopup">
+        <span class="popup-close" onclick="closeSpreadsheetPopup()">&times;</span>
+        <h3>Excel Sheets</h3>
+        <p>Access the Main Hub Sheet</p>
+        <a href="https://docs.google.com/spreadsheets/d/1zrRVDBqOdWzt9XCkBwuHAMHk2U28wPP_0ThfVi4_Lig/edit?usp=sharing" target="_blank" class="service-button" style="display: inline-flex; align-items: center; gap: 0.5rem; margin: 1rem 0;">
+            <i class="fas fa-table"></i> Open Collection Center Sheet
+        </a>
+        <ol>
+            <li>Click the button above to access the main hub sheet</li>
+            <li>Add your collection center's data in the sheet</li>
+            <li>Save your changes in the sheet</li>
+        </ol>
     </div>
 
     <script>
@@ -1906,26 +2224,17 @@
 
         // Enhanced modal closing function
         function closeModal(modalId) {
-            console.log(`Attempting to close modal: ${modalId}`);
             const modal = document.getElementById(modalId);
             if (modal) {
-                try {
-                    modal.classList.remove('active');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }, 300);
-                    console.log(`Modal ${modalId} closed successfully`);
-                } catch (closeError) {
-                    console.error(`Error closing modal ${modalId}:`, closeError);
-                }
-            } else {
-                console.error(`Modal ${modalId} not found`);
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         }
 
         // Add event listener to close modal when clicking outside
         document.addEventListener('DOMContentLoaded', () => {
+            // Close modal when clicking outside
             document.addEventListener('click', (event) => {
                 const modals = document.querySelectorAll('.modal');
                 modals.forEach(modal => {
@@ -1934,88 +2243,17 @@
                     }
                 });
             });
-        });
 
-        function openPaymentQRModal() {
-            console.log("openPaymentQRModal function called");
-
-            // Comprehensive logging and error tracking
-            try {
-                // Check if modal already exists
-                let existingModal = document.getElementById('paymentQRModal');
-                console.log("Existing modal check:", existingModal);
-
-                // If modal doesn't exist, create it dynamically
-                if (!existingModal) {
-                    console.log("Creating new modal dynamically");
-
-                    // Create modal container
-                    const paymentModal = document.createElement('div');
-                    paymentModal.id = 'paymentQRModal';
-                    paymentModal.className = 'modal';
-
-                    // Detailed modal content
-                    paymentModal.innerHTML = `
-                        <div class="modal-content">
-                            <span class="close-modal" onclick="closeModal('paymentQRModal')">&times;</span>
-                            <h2>Payment Instructions</h2>
-                            <div class="payment-section">
-                                <p>Our hub team will contact you shortly to confirm the exact shipping charges.</p>
-                                <div class="qr-container">
-                                    <img 
-                                        src="images/route-revolution-payment-qr.png" 
-                                        alt="Route Revolution Payment QR" 
-                                        class="payment-qr"
-                                        onerror="console.error('QR Code image failed to load')"
-                                    >
-                                </div>
-                                <div class="payment-details">
-                                    <h3>Payment Instructions</h3>
-                                    <ol>
-                                        <li>Wait for our hub team to call and confirm the exact charges</li>
-                                        <li>Use the QR code below to make the payment</li>
-                                        <li>Scan with your preferred UPI app</li>
-                                        <li>Keep the payment receipt for reference</li>
-                                    </ol>
-                                </div>
-                                <div class="payment-contact">
-                                    <p>Need help? Contact us:</p>
-                                    <a href="tel:9994344150" class="contact-button">Call Support</a>
-                                    <a href="https://wa.me/919994344150" class="whatsapp-button">WhatsApp Support</a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    // Append to body with error logging
-                    try {
-                        document.body.appendChild(paymentModal);
-                        console.log("Modal successfully appended to body");
-                    } catch (appendError) {
-                        console.error("Error appending modal to body:", appendError);
-                        alert("Could not create payment modal. Please refresh the page.");
-                        return;
+            // Close modal on Escape key press
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    const activeModal = document.querySelector('.modal.active');
+                    if (activeModal) {
+                        closeModal(activeModal.id);
                     }
                 }
-
-                // Ensure modal exists before trying to open
-                const modal = document.getElementById('paymentQRModal');
-                if (modal) {
-                    console.log("Modal found, attempting to open");
-                    modal.style.display = 'flex';
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    console.log("Modal opened successfully");
-                } else {
-                    console.error("Modal not found after creation attempt");
-                    alert("Could not create payment modal. Please refresh the page.");
-                }
-
-            } catch (generalError) {
-                console.error("Unexpected error in openPaymentQRModal:", generalError);
-                alert("An unexpected error occurred. Please try again.");
-            }
-        }
+            });
+        });
 
         function handleB2BSubmit(event) {
             event.preventDefault();
@@ -2068,21 +2306,91 @@
             window.open(`https://wa.me/919994344150?text=${encodedMessage}`, '_blank');
         }
 
-        function downloadTemplate() {
-            // Create template data
-            const template = `Reference No,Consignee Name,Consignee Address,City,State,Pincode,Country,Actual Weight (kg),Volumetric Weight (kg),Quantity,Commodity Value,Category of Goods,Tax Value,Invoice No,Invoice Date,Special Instructions
-1,John Doe,123 Main St,Mumbai,Maharashtra,400001,India,5.5,6.2,2,1000,Electronics,180,INV001,2024-01-01,`;
+        function accessSpreadsheet() { 
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('spreadsheetPopup').style.display = 'block';
+        }
+        
+        function closeSpreadsheetPopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('spreadsheetPopup').style.display = 'none';
+        }
+        
+        // Close popup when clicking outside
+        document.getElementById('overlay').addEventListener('click', closeSpreadsheetPopup);
+    </script>
 
-            // Create blob and download
-            const blob = new Blob([template], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'collection-center-template.csv';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
+    <script>
+        // Add event listener for ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                // Close all modals
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.classList.add('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300); // Match the CSS transition duration
+            }
+        }
+    </script>
+
+    <script>
+        function generatePackageFields(numPackages) {
+            const container = document.getElementById('packageFields');
+            container.innerHTML = ''; // Clear existing fields
+            
+            for (let i = 1; i <= numPackages; i++) {
+                const packageDiv = document.createElement('div');
+                packageDiv.className = 'package-details';
+                packageDiv.innerHTML = `
+                    <h4>Package ${i}</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="required">Actual Weight (kg)</label>
+                            <input type="number" step="0.01" required name="weight_${i}" min="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Length (cm)</label>
+                            <input type="number" step="0.1" required name="length_${i}" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Breadth (cm)</label>
+                            <input type="number" step="0.1" required name="breadth_${i}" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="required">Height (cm)</label>
+                            <input type="number" step="0.1" required name="height_${i}" min="1">
+                        </div>
+                    </div>
+                `;
+                container.appendChild(packageDiv);
+            }
         }
     </script>
 
@@ -2129,6 +2437,65 @@
             
             // Add your tracking logic here
         });
+    </script>
+
+    <script>
+        const serviceData = [
+            {
+                id: 1,
+                title: "Express Parcel",
+                description: "Send shipments across India for parcels across categories including heavy goods. Our express parcel service ensures quick and secure delivery of your items with real-time tracking and professional handling.",
+                image: "images/image 1.jpg"
+            },
+            {
+                id: 2,
+                title: "Same Day Delivery",
+                description: "Ultra-fast delivery service ensuring your packages reach within the same day. Perfect for urgent documents, time-sensitive packages, and last-minute deliveries within city limits.",
+                image: "images/image 2.jpg"
+            },
+            {
+                id: 3,
+                title: "Bulk Shipments",
+                description: "Business-focused shipping solutions designed for large volume deliveries. Optimize your logistics with our efficient bulk shipping service including volume discounts and dedicated support.",
+                image: "images/image 3.jpg"
+            },
+            {
+                id: 4,
+                title: "International Shipping",
+                description: "Global delivery solutions with end-to-end tracking and customs handling. Connect to markets worldwide with our comprehensive international shipping services and expert documentation support.",
+                image: "images/image 4.jpg"
+            },
+            {
+                id: 5,
+                title: "Specialized Cargo",
+                description: "Safe and secure transportation of sensitive and specialized items. Custom packaging and handling solutions for delicate, valuable, or unique cargo requiring extra care and attention.",
+                image: "images/image 5.jpg"
+            }
+        ];
+
+        function showServiceModal(id) {
+            const service = serviceData.find(s => s.id === id);
+            if (service) {
+                document.getElementById('modalImage').src = service.image;
+                document.getElementById('modalTitle').textContent = service.title;
+                document.getElementById('modalDescription').textContent = service.description;
+                document.getElementById('serviceModal').style.display = 'flex';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeServiceModal();
+            }
+        }
     </script>
 </body>
 </html>
